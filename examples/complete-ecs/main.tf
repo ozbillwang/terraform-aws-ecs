@@ -44,9 +44,11 @@ module "ec2-profile" {
 
 #----- ECS  Services--------
 
-module "hello-world" {
-  source     = "./service-hello-world"
+module "nginx" {
+  source     = "./service-nginx"
   cluster_id = module.ecs.this_ecs_cluster_id
+  vpc_id = module.vpc.vpc_id
+  public_subnets = module.vpc.public_subnets
 }
 
 #----- ECS  Resources--------
